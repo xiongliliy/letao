@@ -14,7 +14,7 @@ $(document).ajaxStart(function() {
 
 
 $(function(){
- //进度条控制
+
   //点击菜单事件
   $(".icon_menu").on("click",function(){
       $(".lt_aside").toggleClass("current");
