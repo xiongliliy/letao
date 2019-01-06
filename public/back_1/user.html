@@ -43,13 +43,47 @@
                 <li><a href="#">管理系统</a></li>
                 <li class="active">首页</li>
             </ol>
-            <div class="lt_content clearfix">
-                <div class="echarts_left pull-left"></div>
-                <div class="echarts_right pull-right"></div>
-            </div>
+            <div class="lt_content">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                      <tr>				
+                         <th>序号</th>
+                         <th>用户名</th>
+                         <th>手机号</th>
+                         <th>状态</th>
+                         <th>操作</th>
+                      </tr>
+                  </thead>
+                   <tbody>
+                       <!-- 挖个坑 -->
+                   </tbody>
+                </table> 
+                <div class="pull-right">
+                    <ul class="paginator"></ul>
+                </div>
+             </div>
         </div>
     </div>
-
+    <!-- 点击启用禁用时的模态框 -->
+    <div class="modal fade" id="updateModal" tabindex="-1">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <h4 class="modal-title">温馨提示</h4>
+                    </div>
+                    <div class="modal-body">
+                     <i class="glyphicon glyphicon-info-sign"></i>
+                     您确定要执行此操作吗?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary updateBtn">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+     <!-- 公共的模态框 -->
     <div class="modal fade" id="myModal" tabindex="-1">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -61,18 +95,41 @@
                  <i class="glyphicon glyphicon-info-sign"></i>
                  您确定要退出系统吗?
                 </div>
-                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary logoutBtn">退出</button>
+                </div>
             </div>
         </div>
     </div>
+    <script type="text/html" id="userTpl">
+    {{each rows v i}}
+        <tr>				
+            <td>{{i+1+(page-1)*size}}</td>
+            <td>{{v.username}}</td>
+            <td>{{v.mobile}}</td>
+            <td>{{v.isDelete == 0 ? "已禁用" : "启用"}}</td>
+            {{if v.isDelete==0}}
+            <td data-id="{{v.id}}"><button class="btn btn-success">启用</button></td>
+            {{else}}
+            <td data-id="{{v.id}}"><button class="btn btn-danger">禁用</button></td>
+            {{/if}}
+        </tr>
+    {{/each}}
+    
+     </script>
 </body>
 <script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="./lib/echarts/echarts.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="./js/common.js"></script>
- <script src="./js/isLogin.js"></script>
+<script src="./js/isLogin.js"></script>
+<script src="./js/user.js"></script>
+
 
 
 </html>

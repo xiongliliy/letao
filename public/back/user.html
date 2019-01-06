@@ -40,20 +40,54 @@
             <a href="#" class="pull-left icon_menu"><i class="glyphicon glyphicon-align-justify"></i></a>
             <a href="#" class="pull-right logoutBtn"><i class="glyphicon glyphicon-log-out"></i></a>
         </div>
-      <div class="container-fluid">
-
-        <!-- 面包屑导航 -->
-        <ol class="breadcrumb mt_20">
-            <li><a href="#">管理系统</a></li>
-            <li class="active">首页</li>
-        </ol>
-
-        <div class="lt_content">
-            <div class="echarst_left pull-left"></div>
-            <div class="echarst_right pull-right"></div>
+        <div class="container-fluid">
+            <!-- 面包屑导航 -->
+            <ol class="breadcrumb mt_20">
+                <li><a href="#">管理系统</a></li>
+                <li class="active">首页</li>
+            </ol>
+           <div class="lt_content">             				
+             <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>用户名</th>
+                        <th>手机号</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <!-- 挖个坑 -->
+                </tbody>
+             </table>
+             <!-- 分页准备的盒子 -->
+             <div class="pull-right">
+             <ul class="paginator"></ul>
+            </div>
+           </div>
         </div>
-      </div>
     </div>
+    <!-- 更改启用禁用状态的模态框 -->
+    <div class="modal fade" id="updateModal" tabindex="-1">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <h4 class="modal-title">温馨提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="red">
+                            <i class="glyphicon glyphicon-info-sign">您确定要执行此操作吗?</i>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary updateBtn">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!-- 模态框插件 -->
     <div class="modal fade" id="myModal" tabindex="-1">
@@ -75,16 +109,33 @@
             </div>
         </div>
     </div>
-
+  <script type="text/html" id="userTpl">
+       {{each rows v i}}
+        <tr>
+            <td>{{i + 1 + (page -1 ) * size }}</td>
+            <td>{{v.username}}</td>
+            <td>{{v.mobile}}</td>
+            <td>{{v.isDelete == 1 ? "正常":"已禁用"}}</td>
+            {{if v.isDelete == 1}}
+            <td data-id="{{v.id}}"><button class="btn btn-danger">禁用</button></td>
+            {{else}}
+            <td data-id="{{v.id}}"><button class="btn btn-success">启用</button></td>
+            {{/if}}
+        </tr>
+       {{/each}}
+ 
+ </script>
 
     <script src="./lib/jquery/jquery.min.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
     <script src="./lib/nprogress/nprogress.js"></script>
     <script src="./lib/echarts/echarts.min.js"></script>
+    <script src="./lib/artTemplate/template-web.js"></script>
     <script src="./js/common.js"></script>
     <script src="./js/islogin.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./js/user.js"></script>
 </body>
 
 </html>

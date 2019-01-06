@@ -91,7 +91,6 @@ a:active{
 .lt_main{
     padding-left: 180px;
     padding-top:50px;
-    background-color: pink;
     transition: all 1s;
     height: 2000px;
 }
@@ -127,10 +126,13 @@ a:active{
 .echarts_right{
     width: 48%;
     height: 400px;
-    background-color: skyblue;
 }
 .modal-body{
     color:#C23531;
 }
 
-
+.table.table-bordered th,
+.table.table-bordered td{
+    text-align: center;
+    vertical-align: middle;
+}
