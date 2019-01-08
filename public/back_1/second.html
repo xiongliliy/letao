@@ -79,23 +79,27 @@
                             <div class="dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                                     data-toggle="dropdown">
-                                    <span class="textadd">请选择一级分类</span>  
+                                    <span class="textadd">请选择一级分类</span>
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                   <!-- 挖个坑 -->
+                                    <!-- 挖个坑 -->
                                 </ul>
                             </div>
+                            <!-- 用于提交分类ID得模态框 -->
+                          
                         </div>
                         <div class="form-group">
-                            <input type="text" name="categoryName" placeholder="请输入二级分类名" class="form-control">
+                            <input type="text" name="brandName" placeholder="请输入二级分类名" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="fileupload" class="btn btn-default">上传图片</label>
                             <input type="file" id="fileupload" style="display: none" name="pic1" data-url="/category/addSecondCategoryPic">
                         </div>
                         <div class="form-group imgBox">
-                            <img  style="width:100px" src="./images/none.png" alt="">
+                            <img style="width:100px" src="./images/none.png" alt="">
+                            <!-- 用于存储图片地址得隐藏域 -->
+                            <input type="hidden" name="brandLogo">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -140,7 +144,7 @@
     </script>
     <script type="text/html" id="cateTpl">
         {{each rows v i}}
-        <li><a href="#">{{v.categoryName}}</a></li>
+        <li><a href="#" data-id="{{v.id}}">{{v.categoryName}}</a></li>
          {{/each}}
     </script>
 </body>
